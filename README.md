@@ -27,12 +27,6 @@ Daymark یک برنامه مدیریت وظایف و برنامه‌ریزی ش�
 
 ## تصاویر برنامه
 
-تصاویر برنامه در مسیر زیر قرار می‌گیرند:
-
-```text
-docs/screenshots/
-```
-
 نمونه نمایش تصاویر:
 
 <p align="center">
@@ -40,8 +34,6 @@ docs/screenshots/
   <img src="docs/screenshots/pic02.jpg" width="250" alt="صفحه برنامه‌ریزی">
   <img src="docs/screenshots/pic03.jpg" width="250" alt="صفحه تحلیل عملکرد">
 </p>
-
-> نام تصاویر واقعی باید با مسیرهای بالا یکسان باشد.
 
 ## دانلود نسخه Android
 
