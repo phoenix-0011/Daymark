@@ -1,0 +1,21 @@
+@startuml
+folder "مستندات Daymark" {
+  file "README.md" as Readme
+  file "SRS.md" as SRS
+  file "ARCHITECTURE.md" as Arch
+  file "ADR/*.md" as ADR
+  file "TEST_PLAN.md" as Test
+  file "ANDROID_EXPORT.md" as Android
+  file "RELEASE_NOTES.md" as Release
+  file "USER_GUIDE.md" as User
+  file "SECURITY.md" as Security
+}
+
+Readme --> SRS : دامنه و قابلیت‌ها
+SRS --> Arch : نیازها به طراحی
+Arch --> ADR : تصمیم‌های مهم
+Arch --> Test : قابلیت‌های قابل آزمون
+Android --> Release : خروجی انتشار
+User --> Readme : شروع استفاده
+Security --> Arch : کنترل‌های امنیتی
+@enduml

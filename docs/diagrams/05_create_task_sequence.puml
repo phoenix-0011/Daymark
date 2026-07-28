@@ -1,0 +1,26 @@
+@startuml
+actor "کاربر" as User
+participant "MainWindow" as Window
+participant "TaskDialog" as Dialog
+participant "Database" as DB
+database "SQLite" as SQLite
+participant "Views" as Views
+
+User -> Window : لمس دکمه +
+Window -> Dialog : open_new_task()
+Dialog --> User : نمایش فرم فشرده
+User -> Dialog : عنوان، زیرکار، تاریخ، دسته‌بندی
+User -> Dialog : Save
+Dialog -> Dialog : اعتبارسنجی عنوان و تاریخ
+Dialog -> DB : save_task(Task)
+DB -> SQLite : BEGIN TRANSACTION
+DB -> SQLite : INSERT tasks
+DB -> SQLite : INSERT subtasks
+SQLite --> DB : commit / task_id
+DB --> Dialog : task_id
+Dialog --> Window : accepted(task_id)
+Window -> Views : refresh coalesced
+Views -> DB : tasks(...)
+DB --> Views : داده به‌روز
+Views --> User : نمایش وظیفه جدید
+@enduml

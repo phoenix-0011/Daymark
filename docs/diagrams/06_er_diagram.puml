@@ -1,0 +1,45 @@
+@startuml
+hide circle
+skinparam linetype ortho
+
+entity categories {
+  * id : INTEGER <<PK>>
+  --
+  name : TEXT <<UNIQUE>>
+  color : TEXT
+  position : INTEGER
+  created_at : TEXT
+}
+
+entity tasks {
+  * id : INTEGER <<PK>>
+  --
+  title : TEXT
+  notes : TEXT
+  category_id : INTEGER <<FK, NULL>>
+  scheduled_date : TEXT <<NULL>>
+  scheduled_time : TEXT <<NULL>>
+  all_day : INTEGER
+  recurrence : TEXT
+  reminder_minutes : INTEGER <<NULL>>
+  reminder_sent : INTEGER
+  starred : INTEGER
+  generated_from_id : INTEGER <<NULL>>
+  completed_at : TEXT <<NULL>>
+  created_at : TEXT
+  updated_at : TEXT
+}
+
+entity subtasks {
+  * id : INTEGER <<PK>>
+  --
+  task_id : INTEGER <<FK>>
+  title : TEXT
+  completed : INTEGER
+  position : INTEGER
+}
+
+categories ||--o{ tasks : category_id
+ tasks ||--o{ subtasks : task_id
+ tasks ||--o{ tasks : generated_from_id
+@enduml

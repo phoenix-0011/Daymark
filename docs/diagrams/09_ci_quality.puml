@@ -1,0 +1,28 @@
+@startuml
+start
+:Push / Pull Request;
+fork
+  :Compile all Python files;
+fork again
+  :Run unit and integration tests;
+fork again
+  :Ruff / formatting checks;
+fork again
+  :Type checking (mypy);
+fork again
+  :Security scan (Bandit + dependency audit);
+end fork
+if (Quality Gates pass?) then (بله)
+  :Code Review approval;
+  if (Release branch/tag?) then (بله)
+    :Build Android APK/AAB;
+    :Verify native libraries and signature;
+    :Publish internal-test artifact;
+  else (خیر)
+    :Merge to main;
+  endif
+else (خیر)
+  :Block merge and report failures;
+endif
+stop
+@enduml

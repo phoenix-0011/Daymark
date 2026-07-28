@@ -1,0 +1,21 @@
+@startuml
+start
+:انتخاب نسخه و به‌روزرسانی Release Notes;
+:اجرای تست‌ها و کنترل کیفیت;
+:ساخت Release-signed AAB;
+:بررسی APK/AAB و کتابخانه‌های native;
+:آپلود در Google Play Internal Testing;
+:تست نصب، ارتقا و مهاجرت داده;
+if (تأیید تست‌کنندگان؟) then (بله)
+  :انتشار مرحله‌ای Production;
+  :پایش crash و بازخورد;
+  if (خطای بحرانی؟) then (بله)
+    :توقف rollout / انتشار Hotfix;
+  else (خیر)
+    :افزایش تدریجی درصد انتشار;
+  endif
+else (خیر)
+  :اصلاح و ساخت نسخه بعدی;
+endif
+stop
+@enduml

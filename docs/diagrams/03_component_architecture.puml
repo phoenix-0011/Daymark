@@ -1,0 +1,44 @@
+@startuml
+skinparam componentStyle rectangle
+
+package "لایه ارائه" {
+  [MainWindow] as Window
+  [Tasks / Planner / History / Mine Views] as Views
+  [Dialogs & Composer] as Dialogs
+  [Reusable Widgets] as Widgets
+  [Theme & i18n] as Theme
+}
+
+package "لایه کاربرد و دامنه" {
+  [Task Models] as Models
+  [Recurrence Service] as Recurrence
+  [Analytics Service] as Analytics
+  [Calendar Utilities] as Calendar
+  [Notification Adapter] as Notify
+}
+
+package "لایه زیرساخت" {
+  [SQLite Repository] as DB
+  database "daymark.sqlite3" as SQLite
+  [Android Device Adapter] as Device
+  [QSettings] as Settings
+}
+
+Window --> Views
+Window --> Dialogs
+Views --> Widgets
+Dialogs --> Widgets
+Window --> Theme
+Views --> Models
+Dialogs --> Models
+Views --> DB
+Dialogs --> DB
+DB --> SQLite
+DB --> Recurrence
+Views --> Analytics
+Analytics --> Models
+Views --> Calendar
+Window --> Notify
+Window --> Device
+Theme --> Settings
+@enduml

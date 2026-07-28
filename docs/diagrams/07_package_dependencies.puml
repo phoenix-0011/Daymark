@@ -1,0 +1,28 @@
+@startuml
+package "daymark" {
+  [window.py] --> [views.py]
+  [window.py] --> [dialogs.py]
+  [window.py] --> [database.py]
+  [window.py] --> [theme.py]
+  [window.py] --> [i18n.py]
+
+  [views.py] --> [widgets.py]
+  [views.py] --> [analytics.py]
+  [views.py] --> [calendar_utils.py]
+  [views.py] --> [database.py]
+
+  [dialogs.py] --> [widgets.py]
+  [dialogs.py] --> [models.py]
+  [dialogs.py] --> [database.py]
+  [dialogs.py] --> [templates.py]
+
+  [database.py] --> [models.py]
+  [database.py] --> [recurrence.py]
+  [analytics.py] --> [models.py]
+  [notifications.py] --> [Android Notification API]
+}
+
+note right of [database.py]
+SQL باید فقط از این ماژول عبور کند.
+end note
+@enduml

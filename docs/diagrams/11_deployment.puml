@@ -1,0 +1,29 @@
+@startuml
+node "Android Build Environment" {
+  artifact "Daymark Source" as Source
+  component "Python 3.11 venv" as Venv
+  component "PySide6 Android Deploy" as Deploy
+  component "Buildozer / python-for-android" as P4A
+  component "JDK 17 + Android SDK/NDK" as Toolchain
+  artifact "Signed APK/AAB" as Artifact
+
+  Source --> Venv
+  Venv --> Deploy
+  Deploy --> P4A
+  P4A --> Toolchain
+  P4A --> Artifact
+}
+
+node "Android Device" {
+  component "Daymark App" as App
+  database "Local SQLite DB" as DB
+  folder "App Data / Logs" as Logs
+  App --> DB
+  App --> Logs
+}
+
+cloud "Google Play\nInternal / Production" as Play
+Artifact --> Play
+Artifact --> App : adb install (debug)
+Play --> App : managed install/update
+@enduml

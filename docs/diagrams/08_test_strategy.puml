@@ -1,0 +1,13 @@
+@startuml
+skinparam rectangle {
+  RoundCorner 12
+}
+rectangle "تست پذیرش کاربر روی دستگاه واقعی\nکم‌تعداد، پرهزینه" as UAT
+rectangle "تست سیستم و End-to-End\nساخت APK، نصب، سناریوهای اصلی" as E2E
+rectangle "تست یکپارچه‌سازی\nDatabase + Recurrence + UI contracts" as INT
+rectangle "تست واحد\nModels, Analytics, Calendar, Validation\nپرتعداد، سریع" as UNIT
+
+UNIT -up-> INT
+INT -up-> E2E
+E2E -up-> UAT
+@enduml

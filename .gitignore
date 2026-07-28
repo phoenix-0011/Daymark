@@ -1,0 +1,118 @@
+# =========================================================
+# Python
+# =========================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# =========================================================
+# Virtual environments
+# =========================================================
+.venv/
+venv/
+env/
+ENV/
+.daymark-android-venv/
+
+# =========================================================
+# Android / Buildozer / PySide deployment artifacts
+# =========================================================
+.buildozer/
+dist/
+dist-android/
+bin/
+deployment/
+android-wheels/
+*.apk
+*.aab
+*.apks
+
+# =========================================================
+# Generated build files
+# =========================================================
+build/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+buildozer.spec
+pysidedeploy.spec
+
+# Keep project templates if they are intentionally tracked
+# !buildozer.spec
+# !pysidedeploy.spec
+
+# =========================================================
+# Runtime databases and app data
+# =========================================================
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+*.sqlite3-journal
+
+# =========================================================
+# Logs and temporary files
+# =========================================================
+*.log
+daymark-crash.log
+*.tmp
+*.temp
+*.bak
+*.swp
+.cache/
+tmp/
+temp/
+
+# =========================================================
+# Android signing secrets
+# =========================================================
+*.keystore
+*.jks
+*.pem
+*.key
+local.properties
+
+# =========================================================
+# Environment variables and secrets
+# =========================================================
+.env
+.env.*
+!.env.example
+
+# =========================================================
+# IDE files
+# =========================================================
+.idea/
+.vscode/
+*.iml
+
+# =========================================================
+# Operating-system files
+# =========================================================
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+Desktop.ini
+
+# =========================================================
+# Generated diagram previews (optional)
+# SVG files are kept because they are used by Markdown docs.
+# =========================================================
+# docs/diagrams/*.png
+
+# =========================================================
+# Local backups
+# =========================================================
+.daymark-backups/
+*_backup/
+*_backup_*/

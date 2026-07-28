@@ -1,0 +1,27 @@
+@startuml
+actor "کاربر دستگاه" as User
+rectangle "مرز اعتماد سیستم‌عامل" {
+  rectangle "Daymark Process" {
+    [UI & Validation] as UI
+    [Domain Logic] as Domain
+    [Parameterized Repository] as Repo
+  }
+  database "Private App SQLite" as DB
+  folder "Private Logs/Settings" as Files
+}
+rectangle "خارج از دستگاه" {
+  cloud "شبکه/سرور" as Network
+}
+
+User --> UI : ورودی لمسی و متنی
+UI --> Domain : داده اعتبارسنجی‌شده
+Domain --> Repo : عملیات دامنه
+Repo --> DB : SQL پارامتری
+UI --> Files : پالت/زبان/Crash log
+
+Network -[hidden]-> UI
+note right of Network
+نسخه فعلی همگام‌سازی ابری ندارد
+و داده کاربر را ارسال نمی‌کند.
+end note
+@enduml

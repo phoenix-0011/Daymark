@@ -1,0 +1,74 @@
+@startuml
+hide empty members
+
+class Task {
+  +id: int?
+  +title: str
+  +notes: str
+  +category_id: int?
+  +scheduled_date: date?
+  +scheduled_time: time?
+  +all_day: bool
+  +recurrence: str
+  +reminder_minutes: int?
+  +starred: bool
+  +completed_at: datetime?
+  +subtasks: list<Subtask>
+  +is_overdue: bool
+}
+
+class Subtask {
+  +id: int?
+  +title: str
+  +completed: bool
+  +position: int
+}
+
+class Category {
+  +id: int
+  +name: str
+  +color: str
+  +position: int
+}
+
+class Database {
+  +save_task(task): int
+  +task(id): Task?
+  +tasks(...): list<Task>
+  +complete_task(id): int?
+  +restore_task(id)
+  +set_task_date(id, date)
+  +add_category(name, color): int
+  +delete_category(id)
+}
+
+class MainWindow {
+  -database: Database
+  +refresh_everything()
+  +open_new_task()
+  +open_settings()
+}
+
+class TaskDialog
+class TasksView
+class PlannerView
+class HistoryView
+class InsightsView
+class AnalyticsService
+class RecurrenceService
+
+Task "1" *-- "0..*" Subtask
+Category "0..1" <-- "0..*" Task
+MainWindow --> Database
+MainWindow --> TasksView
+MainWindow --> PlannerView
+MainWindow --> HistoryView
+MainWindow --> InsightsView
+TaskDialog --> Database
+TaskDialog --> Task
+Database --> Task
+Database --> Category
+Database --> RecurrenceService
+InsightsView --> AnalyticsService
+AnalyticsService --> Task
+@enduml

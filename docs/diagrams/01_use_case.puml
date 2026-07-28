@@ -1,0 +1,110 @@
+@startuml
+top to bottom direction
+
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam linetype ortho
+skinparam nodesep 40
+skinparam ranksep 55
+skinparam defaultFontName "Arial"
+skinparam defaultTextAlignment center
+skinparam ArrowColor #5F6F68
+skinparam ArrowThickness 1
+
+skinparam actor {
+  BackgroundColor #FFFFFF
+  BorderColor #5F6F68
+  FontColor #26342E
+}
+
+skinparam usecase {
+  BackgroundColor #F8FBF9
+  BorderColor #5F6F68
+  FontColor #26342E
+}
+
+skinparam rectangle {
+  BorderColor #5F6F68
+  FontColor #26342E
+}
+
+actor "کاربر" as User
+
+rectangle "Daymark — برنامه Android" as Daymark {
+
+  package "مدیریت وظایف" {
+    usecase "ایجاد وظیفه" as UC_Create
+    usecase "ویرایش وظیفه" as UC_Edit
+    usecase "حذف وظیفه" as UC_Delete
+    usecase "تکمیل وظیفه" as UC_Complete
+    usecase "بازیابی وظیفه" as UC_Restore
+
+    UC_Create -[hidden]down-> UC_Edit
+    UC_Edit -[hidden]down-> UC_Delete
+    UC_Delete -[hidden]down-> UC_Complete
+    UC_Complete -[hidden]down-> UC_Restore
+  }
+
+  package "برنامه‌ریزی و سازمان‌دهی" {
+    usecase "افزودن زیرکار" as UC_Subtask
+    usecase "زمان‌بندی تاریخ و ساعت" as UC_Schedule
+    usecase "تنظیم تکرار" as UC_Repeat
+    usecase "تنظیم یادآور" as UC_Reminder
+    usecase "جست‌وجو و فیلتر" as UC_Search
+    usecase "مدیریت دسته‌بندی‌ها" as UC_Category
+
+    UC_Subtask -[hidden]down-> UC_Schedule
+    UC_Schedule -[hidden]down-> UC_Repeat
+    UC_Repeat -[hidden]down-> UC_Reminder
+    UC_Reminder -[hidden]down-> UC_Search
+    UC_Search -[hidden]down-> UC_Category
+  }
+
+  package "پیگیری و شخصی‌سازی" {
+    usecase "مشاهده روز، هفته و ماه" as UC_Planner
+    usecase "مشاهده تاریخچه" as UC_History
+    usecase "مشاهده تحلیل عملکرد" as UC_Insights
+    usecase "تغییر زبان، ظاهر و پالت" as UC_Settings
+    usecase "دریافت اعلان وظیفه" as UC_Notification
+
+    UC_Planner -[hidden]down-> UC_History
+    UC_History -[hidden]down-> UC_Insights
+    UC_Insights -[hidden]down-> UC_Settings
+    UC_Settings -[hidden]down-> UC_Notification
+  }
+
+  UC_Create -[hidden]right-> UC_Subtask
+  UC_Subtask -[hidden]right-> UC_Planner
+}
+
+actor "سیستم‌عامل Android" as AndroidOS
+
+' ارتباط‌های مستقیم کاربر فقط با هدف‌های اصلی او
+User --> UC_Create
+User --> UC_Edit
+User --> UC_Delete
+User --> UC_Complete
+User --> UC_Restore
+User --> UC_Search
+User --> UC_Category
+User --> UC_Planner
+User --> UC_History
+User --> UC_Insights
+User --> UC_Settings
+User --> UC_Notification
+
+' قابلیت‌های اختیاری، Use Case پایه را توسعه می‌دهند
+UC_Subtask .> UC_Create : <<extend>>
+UC_Subtask .> UC_Edit : <<extend>>
+UC_Schedule .> UC_Create : <<extend>>
+UC_Schedule .> UC_Edit : <<extend>>
+UC_Repeat .> UC_Schedule : <<extend>>
+UC_Reminder .> UC_Schedule : <<extend>>
+
+' Android در زمان مقرر اعلان را تحویل می‌دهد
+AndroidOS --> UC_Notification
+
+' قیدهای نامرئی فقط برای چیدمان پایدار هستند
+UC_Notification -[hidden]down-> AndroidOS
+
+@enduml
