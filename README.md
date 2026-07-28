@@ -36,9 +36,9 @@ docs/screenshots/
 نمونه نمایش تصاویر:
 
 <p align="center">
-  <img src="docs/screenshots/tasks.png" width="250" alt="صفحه وظایف">
-  <img src="docs/screenshots/planner.png" width="250" alt="صفحه برنامه‌ریزی">
-  <img src="docs/screenshots/mine.png" width="250" alt="صفحه تحلیل عملکرد">
+  <img src="docs/screenshots/pic01.jpg" width="250" alt="صفحه وظایف">
+  <img src="docs/screenshots/pic02.jpg" width="250" alt="صفحه برنامه‌ریزی">
+  <img src="docs/screenshots/pic03.jpg" width="250" alt="صفحه تحلیل عملکرد">
 </p>
 
 > نام تصاویر واقعی باید با مسیرهای بالا یکسان باشد.
