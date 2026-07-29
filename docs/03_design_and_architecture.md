@@ -6,6 +6,18 @@
 > **نوع محصول:** برنامه مدیریت وظایف و برنامه‌ریزی محلی (Local-first) برای Android  
 > **فناوری‌های اصلی:** Python 3.11، PySide6/Qt، SQLite، Buildozer و python-for-android  
 > **دامنه فعلی:** تک‌کاربره، بدون حساب ابری و بدون انتقال داده به سرور
+> **تیم توسعه:** علی ابراهیمی نیا، امیرحسین رابعی، مهدی ابراهیم زاده، مجتبی محمودی، علی رضا زاده و مهدی نریمانی  
+> **شیوه تقسیم کار:** معماری و منطق هسته، رابط کاربری، طراحی UI/UX و پایگاه داده؛ تست، بازبینی و مستندسازی به‌صورت مشترک
+> و متناسب با حوزه هر عضو انجام شده است.
+
+## مسئولیت تیم در طراحی و معماری
+
+| حوزه                                         | مسئول اصلی                        | همکاران                   |
+|----------------------------------------------|-----------------------------------|---------------------------|
+| معماری کلان، مرزبندی ماژول‌ها و منطق دامنه   | علی ابراهیمی نیا                  | تمام اعضای تیم در بازبینی |
+| معماری رابط و اتصال Viewها به منطق           | امیرحسین رابعی، مهدی ابراهیم زاده | علی ابراهیمی نیا          |
+| طراحی جریان‌ها، Design System و رفتار تعاملی | مجتبی محمودی، مهدی نریمانی        | توسعه‌دهندگان رابط        |
+| طرح داده، Repository، تراکنش و Migration     | علی رضا زاده                      | علی ابراهیمی نیا          |
 
 ## 1. تصمیم معماری سطح بالا
 
@@ -28,34 +40,26 @@ Daymark یک **Modular Monolith محلی** است. تمام قابلیت‌ها 
 - viewهای مخفی نباید بی‌دلیل rebuild شوند.
 - theme باید token-based باشد و رنگ hard-coded پراکنده نداشته باشد.
 
-## 3. نگاشت ماژول‌ها
+## 3. نگاشت ماژول‌ها و مالکیت فنی
 
-| ماژول              | مسئولیت                                                 |
-|--------------------|---------------------------------------------------------|
-| `main.py`          | startup، exception hook و event guardهای سراسری         |
-| `window.py`        | shell اصلی، navigation، settings، refresh orchestration |
-| `views.py`         | Tasks، Planner و History                                |
-| `insights.py`      | نمایش بخش Mine و نمودارها                               |
-| `dialogs.py`       | New/Edit Task، Schedule، Templates و Category           |
-| `widgets.py`       | کنترل‌های reusable، swipe card و animation stack        |
-| `database.py`      | repository و migrationهای SQLite                        |
-| `models.py`        | مدل‌های دامنه                                           |
-| `recurrence.py`    | محاسبه رخداد بعدی                                       |
-| `analytics.py`     | محاسبات آماری مستقل از UI                               |
-| `theme.py`         | tokenهای رنگ، light/dark و palette                      |
-| `i18n.py`          | ترجمه انگلیسی و ترکی                                    |
-| `device.py`        | تشخیص و رفتارهای دستگاه                                 |
-| `notifications.py` | adapter اعلان و یادآور Android                          |
+| ماژول              | مسئولیت                                                  | مسئول اصلی                                                  |
+|--------------------|----------------------------------------------------------|-------------------------------------------------------------|
+| `main.py`          | startup، exception hook و event guardهای سراسری          | علی ابراهیمی نیا                                            |
+| `window.py`        | shell اصلی، navigation، settings و refresh orchestration | مهدی ابراهیم زاده با بازبینی علی ابراهیمی نیا               |
+| `views.py`         | Tasks، Planner و History                                 | امیرحسین رابعی و مهدی ابراهیم زاده                          |
+| `insights.py`      | نمایش بخش Mine و نمودارها                                | مهدی ابراهیم زاده                                           |
+| `dialogs.py`       | New/Edit Task، Schedule، Templates و Category            | امیرحسین رابعی                                              |
+| `widgets.py`       | کنترل‌های reusable، swipe card و animation stack         | امیرحسین رابعی و مهدی ابراهیم زاده                          |
+| `database.py`      | Repository، schema و migrationهای SQLite                 | علی رضا زاده                                                |
+| `models.py`        | مدل‌های دامنه                                            | علی ابراهیمی نیا                                            |
+| `recurrence.py`    | محاسبه رخداد بعدی                                        | علی ابراهیمی نیا                                            |
+| `analytics.py`     | محاسبات آماری مستقل از UI                                | علی ابراهیمی نیا                                            |
+| `theme.py`         | tokenهای رنگ، light/dark و palette                       | توسعه‌دهندگان رابط براساس طراحی مجتبی محمودی و مهدی نریمانی |
+| `i18n.py`          | ترجمه انگلیسی و ترکی                                     | توسعه‌دهندگان رابط                                          |
+| `device.py`        | تشخیص و رفتارهای Android                                 | علی ابراهیمی نیا و توسعه‌دهندگان رابط                       |
+| `notifications.py` | یادآور درون‌برنامه‌ای و رابط توسعه آینده اعلان Android   | علی ابراهیمی نیا                                            |
 
 ## 4. نمودار Component
-
-<p align="center">
-  <img src="diagrams/03_component_architecture.svg" alt="نمودار معماری مؤلفه‌ها" width="1000" />
-</p>
-
-<p align="center"><em>معماری مؤلفه‌ای و ارتباط لایه‌های Daymark</em></p>
-
-### کد منبع PlantUML
 
 ```plantuml
 @startuml
@@ -110,14 +114,6 @@ Theme --> Settings
 
 مدل `Task` هسته دامنه است. زیرکارها composition هستند و با حذف Task حذف می‌شوند. Category رابطه اختیاری دارد و حذف آن
 باید `category_id` وظایف را NULL کند.
-
-<p align="center">
-  <img src="diagrams/04_class_diagram.svg" alt="نمودار کلاس‌ها" width="1000" />
-</p>
-
-<p align="center"><em>کلاس‌های اصلی دامنه، پایگاه داده و رابط کاربری</em></p>
-
-### کد منبع PlantUML
 
 ```plantuml
 @startuml
@@ -202,14 +198,6 @@ AnalyticsService --> Task
 
 نکته مهم این جریان، اعتبارسنجی قبل از write، transaction اتمی و refresh غیرهم‌زمان و coalesced پس از ذخیره است.
 
-<p align="center">
-  <img src="diagrams/05_create_task_sequence.svg" alt="نمودار توالی ایجاد وظیفه" width="920" />
-</p>
-
-<p align="center"><em>توالی ایجاد و ذخیره یک وظیفه جدید</em></p>
-
-### کد منبع PlantUML
-
 ```plantuml
 @startuml
 actor "کاربر" as User
@@ -257,14 +245,6 @@ Views --> User : نمایش وظیفه جدید
 ### جدول subtasks
 
 رابطه با Task از نوع cascade delete است و `position` ترتیب نمایش را حفظ می‌کند.
-
-<p align="center">
-  <img src="diagrams/06_er_diagram.svg" alt="نمودار ER پایگاه داده" width="1000" />
-</p>
-
-<p align="center"><em>موجودیت‌ها و روابط پایگاه داده محلی Daymark</em></p>
-
-### کد منبع PlantUML
 
 ```plantuml
 @startuml

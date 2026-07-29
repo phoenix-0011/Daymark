@@ -1,0 +1,24 @@
+@startuml
+skinparam componentStyle rectangle
+skinparam linetype ortho
+
+rectangle "Daymark Android" as Product
+
+component "معماری و منطق هسته\nعلی ابراهیمی نیا" as Core
+component "رابط Tasks و History\nامیرحسین رابعی" as UI1
+component "رابط Planner و Mine\nمهدی ابراهیم زاده" as UI2
+component "UX مدیریت وظایف\nمجتبی محمودی" as UX1
+component "پایگاه داده و Migration\nعلی رضا زاده" as DB
+component "UX Planner و Design System\nمهدی نریمانی" as UX2
+
+Core --> Product
+UI1 --> Product
+UI2 --> Product
+DB --> Product
+UX1 --> UI1 : طرح و ارزیابی
+UX2 --> UI2 : طرح و ارزیابی
+Core <--> DB : قرارداد داده
+Core <--> UI1 : قرارداد منطق و UI
+Core <--> UI2 : analytics و planner
+UX1 <--> UX2 : Design System
+@enduml

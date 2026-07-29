@@ -9,6 +9,7 @@ folder "مستندات Daymark" {
   file "RELEASE_NOTES.md" as Release
   file "USER_GUIDE.md" as User
   file "SECURITY.md" as Security
+  file "TEAM_CONTRIBUTIONS.md" as Team
 }
 
 Readme --> SRS : دامنه و قابلیت‌ها
@@ -18,4 +19,5 @@ Arch --> Test : قابلیت‌های قابل آزمون
 Android --> Release : خروجی انتشار
 User --> Readme : شروع استفاده
 Security --> Arch : کنترل‌های امنیتی
+Team --> Readme : اعضا و مسئولیت‌ها
 @enduml

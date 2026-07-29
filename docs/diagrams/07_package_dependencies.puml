@@ -19,7 +19,7 @@ package "daymark" {
   [database.py] --> [models.py]
   [database.py] --> [recurrence.py]
   [analytics.py] --> [models.py]
-  [notifications.py] --> [Android Notification API]
+  [notifications.py] --> [Android Reminder Adapter]
 }
 
 note right of [database.py]

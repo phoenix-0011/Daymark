@@ -1,1 +1,0 @@
-Copy your existing 1024x1024 icon.png into this project directory beside main.py before building.
