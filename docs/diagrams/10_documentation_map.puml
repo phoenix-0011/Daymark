@@ -20,4 +20,7 @@ Android --> Release : خروجی انتشار
 User --> Readme : شروع استفاده
 Security --> Arch : کنترل‌های امنیتی
 Team --> Readme : اعضا و مسئولیت‌ها
+component "User Guide / UAT / Release" as Evidence
+component "ADR / Privacy / Security" as Governance
+Evidence --> Governance : release evidence
 @enduml

@@ -1,0 +1,32 @@
+@startuml
+skinparam linetype ortho
+start
+:انتخاب Build و Commit;
+:بررسی Entry Criteria;
+if (نوع تست؟) then (خودکار)
+  :اجرای pytest;
+  :اجرای Coverage;
+  if (Failure؟) then (بله)
+    :ثبت Defect;
+    :رفع و Regression Test;
+  else (خیر)
+    :ثبت Evidence;
+  endif
+else (دستگاه واقعی)
+  :ثبت Device و Android;
+  :اجرای Test Case;
+  if (نتیجه مطابق انتظار؟) then (بله)
+    :ثبت PASS و Evidence;
+  else (خیر)
+    :ثبت FAIL و Defect;
+  endif
+endif
+:به‌روزرسانی RTM;
+:بررسی Exit Criteria;
+if (تمام Gateها پاس؟) then (بله)
+  :Release Approved;
+else (خیر)
+  :Release Conditional / Blocked;
+endif
+stop
+@enduml

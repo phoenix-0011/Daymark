@@ -77,9 +77,6 @@ class Database:
 
             CREATE INDEX IF NOT EXISTS idx_tasks_category_status
             ON tasks(category_id, completed_at);
-
-            CREATE INDEX IF NOT EXISTS idx_tasks_generated_from
-            ON tasks(generated_from_id);
             """
         )
         task_columns = {row["name"] for row in self.connection.execute("PRAGMA table_info(tasks)")}
@@ -87,9 +84,9 @@ class Database:
             self.connection.execute("ALTER TABLE tasks ADD COLUMN starred INTEGER NOT NULL DEFAULT 0")
         if "generated_from_id" not in task_columns:
             self.connection.execute("ALTER TABLE tasks ADD COLUMN generated_from_id INTEGER")
-            self.connection.execute(
-                "CREATE INDEX IF NOT EXISTS idx_tasks_generated_from ON tasks(generated_from_id)"
-            )
+        self.connection.execute(
+            "CREATE INDEX IF NOT EXISTS idx_tasks_generated_from ON tasks(generated_from_id)"
+        )
 
         count = self.connection.execute("SELECT COUNT(*) FROM categories").fetchone()[0]
         if count == 0:

@@ -26,3 +26,16 @@ git add README.md docs
 git commit -m "Update documentation with team roles and contributions"
 git push
 ```
+
+
+## جایگزینی نسخه کامل تست
+
+پوشه `docs` این بسته را جایگزین پوشه `docs` فعلی پروژه کنید. سپس:
+
+```bash
+plantuml -charset UTF-8 -tsvg docs/diagrams/*.puml
+
+git add docs TESTING_UPDATE_SUMMARY.md
+git commit -m "Complete test strategy, test cases and execution report"
+git push
+```

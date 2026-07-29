@@ -1,0 +1,47 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra"
+
+[tool.coverage.run]
+branch = true
+source = ["daymark"]
+omit = [
+  "daymark/dialogs.py",
+  "daymark/insights.py",
+  "daymark/notifications.py",
+  "daymark/qt.py",
+  "daymark/templates.py",
+  "daymark/theme.py",
+  "daymark/views.py",
+  "daymark/widgets.py",
+  "daymark/window.py",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+fail_under = 90
+exclude_lines = [
+  "pragma: no cover",
+  "if TYPE_CHECKING:",
+  "if __name__ == .__main__.:",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 110
+extend-exclude = [".buildozer", "dist-android", "android-wheels", "deployment"]
+
+[tool.ruff.lint]
+# Blocking CI uses only critical correctness rules. The broader lint run is
+# reported as advisory until the historical source has been normalized.
+select = ["E9", "F63", "F7", "F82"]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+warn_unused_configs = true
+check_untyped_defs = true
+no_implicit_optional = true
+exclude = "daymark/(dialogs|insights|theme|views|widgets|window)\\.py"
